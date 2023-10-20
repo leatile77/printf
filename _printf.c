@@ -1,78 +1,66 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * print_buff - Function that prints buffer's content
- * @buffer: Content to print
- * @i_buff: index of buffer
  *
- * Return: void
- */
-
-void print_buff(char buffer[], int *i_buff)
-{
-if (*i_buff > 0)
-{
-write(1,  buffer, *i_buff);
-}
-
-*i_buff = 0;
-}
-
-/**
- * _printf - Our printf function
- * @format: character specifying format
  *
- * Return: Number of printed chars
+ *
+ *
+ *
  */
 
 int _printf(const char *format, ...)
 {
-int i, flags, width, precision, length, chars_num, h_print, i_buff;
-char buffer[BUFF_SIZE];
+int i, ch, num, ;
+char *str;
+double dec;
 va_list arg;
 
-chars_num = 0;
-h_print = 0;
-i_buff = 0;
-
 va_start(arg, format);
+i = 0;
 
-for (i = 0; (format != '\0') && (format[i] != '\0'); i++)
+while (*format != '\0')
 {
-if (format[i] == '%')
+if (*format == '%')
 {
-print_buffer(buffer, &i_buff);
-flags = get_flags(format, &i);
-width = get_width(format, &i, arg);
-precision = get_precision(format, &i, arg);
-length = get_length(format, &i);
-i++;
-
-h_print = handle_print(format, &i, arg, buffer, flags, width, precision, length);
-
-if (h_print == -1)
+format++;
+if (*format == 'c')
 {
-return (-1);
+ch = va_arg(arg, int);
+i += print_char(ch);
 }
 
-chars_num = chars_num + h_print;
+else if (*format == 's')
+{
+str = va_arg(arg, char *);
+i += print_string(str);
+}
+
+else if (*format == '%')
+{
+i += print_percent();
+}
+
+else if (*format == 'i')
+{
+num = va_arg(arg, int);
+i += print_int(num);
+}
+
+else if (*format == 'd')
+{
+dec = va_arg(arg, double);
+i += print_decimal(dec);
 }
 
 else
 {
-buffer[i_buff++] = format[i];
-
-if (i_buff == BUFF_SIZE)
-{
-print_buff(buffer, &i_buff);
-chars_num++;
-}
-}
+_putchar(*format);
+i++;
 }
 
-print_buff(buffer, &i_buff);
+format++;
+}
 
 va_end(arg);
-return (chars_num);
+return (i);
 }
