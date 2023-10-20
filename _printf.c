@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * _printf - Our printf Function, prints according to specified conversion
@@ -9,7 +10,7 @@
 
 int _printf(const char *format, ...)
 {
-int i, ch, num, ;
+int i, ch, num;
 char *str;
 double dec;
 va_list arg;
@@ -49,6 +50,7 @@ else if (*format == 'd')
 {
 dec = va_arg(arg, double);
 i += print_decimal(dec);
+}
 }
 
 else

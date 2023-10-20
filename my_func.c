@@ -1,4 +1,5 @@
 #include  "main.h"
+#include <stdio.h>
 
 /**
  * print_char - Function to Prints a character
@@ -7,10 +8,9 @@
  * Return: 1
  */
 
-int print_char(va_list arg)
+int print_char(char s)
 {
-char s;
-s = va_arg(value, int);
+
 _putchar(s);
 
 return (1);
@@ -23,17 +23,15 @@ return (1);
  * Return: Number of chars printed/ length
  */
 
-int print_string(va_list arg)
+int print_string(char *str)
 {
-char *s;
 int len;
 
-s = va_arg(arg, char *);
 
-while (*s != '\0')
+while (*str != '\0')
 {
-_putchar(*s);
-s++;
+_putchar(*str);
+str++;
 len++;
 }
 return (len);
@@ -58,11 +56,10 @@ return (1);
  * Return: Number of chars printed / length
  */
 
-int print_int(va_list arg)
+int print_int(int n)
 {
-int i, n, rev;
+int i, rev;
 
-n = va_arg(arg, int);
 i = 0;
 rev = 0;
 
@@ -103,12 +100,11 @@ return (i);
  * Return: number of chars printe
  */
 
-int print_decimal(va_list arg)
+int print_decimal(double num)
 {
 int i, before, numchars, printed;
-double num, after;
+double after;
 
-num = va_arg(arg, double);
 numchars = 0;
 
 if (num == 0)
