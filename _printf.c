@@ -1,11 +1,10 @@
 #include "main.h"
 
 /**
+ * _printf - Our printf Function, prints according to specified conversion
+ * @format: conversion to useto print/ format specifier
  *
- *
- *
- *
- *
+ * Return: number of chars printed / i
  */
 
 int _printf(const char *format, ...)
