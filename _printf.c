@@ -11,8 +11,9 @@
 int _printf(const char *format, ...)
 {
 int i, ch, num;
+unsigned int unsnd, oct;
 char *str;
-double dec;
+
 va_list arg;
 
 va_start(arg, format);
@@ -40,18 +41,26 @@ else if (*format == '%')
 i += print_percent();
 }
 
-else if (*format == 'i')
+else if (*format == 'i' || *format == 'd')
 {
 num = va_arg(arg, int);
 i += print_int(num);
 }
 
-else if (*format == 'd')
+else if (*format == 'u')
 {
-dec = va_arg(arg, double);
-i += print_decimal(dec);
+unsnd = va_arg(arg, unsigned int);
+i += print_unsigned(unsnd);
 }
+
+else if (*format == 'o')
+{
+oct = va_arg(arg, unsigned int);
+i += print_octal(oct);
 }
+
+}
+
 
 else
 {

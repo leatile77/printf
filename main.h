@@ -11,7 +11,9 @@ int print_char(char c);
 int print_string(char *str);
 int print_percent(void);
 int print_int(int n);
-int print_decimal(double num);
+int print_unsigned(unsigned int unsnd);
+int print_octal(unsigned int num);
+/* int print_decimal(double num); */
 
 
 #endif

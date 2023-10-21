@@ -3,7 +3,7 @@
 
 /**
  * print_char - Function to Prints a character
- * @value: argument to print
+ * @s: char to print
  *
  * Return: 1
  */
@@ -18,7 +18,7 @@ return (1);
 
 /**
  * print_string - Prints out a string of chars
- * @value: string arg to  print
+ * @str: string to  print
  *
  * Return: Number of chars printed/ length
  */
@@ -51,7 +51,7 @@ return (1);
 
 /**
  * print_int - Prints an integer
- * @arg: int argument to print
+ * @n: int argument to print
  *
  * Return: Number of chars printed / length
  */
@@ -94,18 +94,54 @@ return (i);
 }
 
 /**
- * print_decimal - Function that prints a decimal num
- * @arg: argument to be printed
+ * print_unsigned - Print unsignd int
+ * @unsnd: unsignd to print
  *
- * Return: number of chars printe
+ * Return: number of chars printed
  */
 
-int print_decimal(double num)
+int print_unsigned(unsigned int unsnd)
 {
-int i, before, numchars, printed;
-double after;
 
-numchars = 0;
+int i, rev;
+
+i = 0;
+rev = 0;
+
+if (unsnd == 0)
+{
+_putchar('0');
+i++;
+}
+
+while (unsnd > 0)
+{
+/*reverse the number, so we can print it from end to start*/
+rev = rev * 10 + unsnd % 10;
+unsnd /= 10; /*makes next digit the last each iteration*/
+}
+
+while (rev > 0)
+{
+_putchar(rev % 10 + '0'); 
+rev /= 10;
+i++;
+}
+
+return (i);
+}
+
+/**
+ * print_octal - Prints octal
+ * @num: unsigned to print as octal
+ *
+ * Return: number of printed chars
+ */
+
+int print_octal(unsigned int num)
+{
+int i, j, n, oct[20];
+n = 0;
 
 if (num == 0)
 {
@@ -113,32 +149,32 @@ _putchar('0');
 return (1);
 }
 
-else if (num < 0)
+else
 {
-_putchar('-');
-numchars++;
-num = -num;
-}
-
-/*whole num before decimal*/
-before = (int)num;
-numchars += print_int(before);
-
-/*decimal point*/
-_putchar('.');
-numchars++;
-
-/*fraction after decimal*/
-after = num - before;
-
-for (i = 0; i < 6; i++) /*6 digits of precision for float*/
+for (i = 0; num > 0; i++)
 {
-after *= 10; /* bring decimal digits before (.) */
-printed = (int)after;
-_putchar('0' + printed);
-numchars++;
+oct[i] = num % 8; /* convert to octal, store in reverse order */
+num /= 8; /* remove converted */
+}
 
-after = after - printed; /* remove printed, prep to bring another b4 (.)*/
+for (j = i - 1; j >= 0; j--)
+{
+_putchar('0' + oct[j]); /*reverse reversed oct, print in forward order*/
+n++;
 }
-return (numchars);
 }
+
+return (n);
+}
+
+/**
+ * print_Hex - A function that prints a hexadecimal
+ * @num: unsigned int to convert and print as hexadecimal
+ *
+ * Return: number of characters printed
+ */
+
+/*int print_Hex(unsigned int num)
+{
+int i, 
+}*/
