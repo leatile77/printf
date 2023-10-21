@@ -38,6 +38,9 @@ int main(void)
     printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
     _printf("Address:[%p]\n", addr);
     printf("Address:[%p]\n", addr);
-    
+   _printf("Binary:[%b]\n", ui);
+   printf("Binary:[%b]\n", ui);
+
+
     return (0);
 }
