@@ -94,6 +94,41 @@ return (i);
 }
 
 /**
+ * print_binary - Converts unsigned to binary and print
+ * @num: number to convert and print
+ *
+ * Return: number of characters printed
+ */
+
+int print_binary(unsigned int num)
+{
+int i, j, n, bin[80];
+
+n = 0;
+
+if (num == 0)
+{
+_putchar('0');
+return (1);
+}
+
+for (i = 0; num > 0; i++)
+{
+bin[i] = num % 2; /*conv to binary*/
+num /= 2;
+}
+
+for (j = i - 1; j >= 0; j--)
+{
+_putchar('0' + bin[j]);
+n++;
+}
+
+return (n);
+
+}
+
+/**
  * print_unsigned - Print unsignd int
  * @unsnd: unsignd to print
  *
