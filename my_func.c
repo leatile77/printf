@@ -274,6 +274,11 @@ addr = (unsigned long int)ptr;
 n = 0;
 hexed = 0;
 
+if (addr == NULL)
+{
+return (0);
+}
+
 _putchar('0');
 _putchar('x');
 n += 2;
