@@ -174,7 +174,95 @@ return (n);
  * Return: number of characters printed
  */
 
-/*int print_Hex(unsigned int num)
+int print_Hex(unsigned int num, const char *format)
 {
-int i, 
-}*/
+int i, j, n, hexed;
+char hexStore[20];
+
+n = 0;
+hexed = 0;
+
+if (num == 0)
+{
+_putchar('0');
+return (1);
+}
+
+for (i = 0; num > 0; i++)
+{
+hexed = num % 16; /* convert to hex */
+
+if (hexed > 10)
+{
+if (*format == 'x')
+{
+hexStore[i] = hexed + 'a' - 10; /* conv values > 10 to a-f */
+}
+else if (*format == 'X')
+{
+hexStore[i] = hexed + 'A' - 10; /* conv val > 10 to A-F */
+}
+}
+
+else
+{
+hexStore[i] = hexed + '0';
+}
+
+num /= 16; /* remove converted hex, prep for next*/
+}
+
+for (j = i - 1; j >= 0; j--)
+{
+_putchar(hexStore[j]);
+n++;
+}
+
+return (n);
+}
+
+
+/**
+ * print_Address - Function that prints an address/ pointer value
+ * @ptr: void pointer to print
+ *
+ * Return: number of chars printed
+ */
+
+int print_Address(void *ptr)
+{
+char hexStore[15];
+int i, j, n, hexed;
+unsigned long int addr;
+
+addr = (unsigned long int)ptr;
+n = 0;
+hexed = 0;
+
+_putchar('0');
+_putchar('x');
+n += 2;
+
+for (i = 0; addr > 0; i++)
+{
+hexed = addr % 16; /*conv to hex*/
+if (hexed < 10)
+{
+hexStore[i] = hexed + '0';
+}
+
+else
+{
+hexStore[i] = hexed + 'a' - 10;
+}
+addr /= 16; /* rid of past conv, get new one */
+}
+
+for (j = i - 1; j >= 0; j--)
+{
+_putchar(hexStore[j]);
+n++;
+}
+
+return (n);
+}

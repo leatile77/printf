@@ -13,6 +13,8 @@ int print_percent(void);
 int print_int(int n);
 int print_unsigned(unsigned int unsnd);
 int print_octal(unsigned int num);
+int print_Hex(unsigned int num, const char *format);
+int print_Address(void *ptr);
 /* int print_decimal(double num); */
 
 

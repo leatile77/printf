@@ -11,8 +11,9 @@
 int _printf(const char *format, ...)
 {
 int i, ch, num;
-unsigned int unsnd, oct;
+unsigned int unsnd, oct, hex;
 char *str;
+void *addr;
 
 va_list arg;
 
@@ -41,7 +42,7 @@ else if (*format == '%')
 i += print_percent();
 }
 
-else if (*format == 'i' || *format == 'd')
+else if ((*format == 'i') || (*format == 'd'))
 {
 num = va_arg(arg, int);
 i += print_int(num);
@@ -57,6 +58,18 @@ else if (*format == 'o')
 {
 oct = va_arg(arg, unsigned int);
 i += print_octal(oct);
+}
+
+else if ((*format == 'x') || (*format == 'X'))
+{
+hex = va_arg(arg, unsigned int);
+i += print_Hex(hex, format);
+}
+
+else if (*format == 'p')
+{
+addr = va_arg(arg, void *);
+i += print_Address(addr);
 }
 
 }
